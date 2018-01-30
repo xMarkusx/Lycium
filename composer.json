@@ -1,0 +1,15 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "^6.1"
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lycium\\LyciumForm\\": "src/LyciumForm",
+      "Lycium\\LyciumForm\\Tests\\": "src/Tests"
+    }
+  }
+}
