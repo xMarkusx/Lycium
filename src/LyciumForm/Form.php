@@ -39,7 +39,8 @@ class Form
         foreach ($fields as $field) {
             $presenterData[] = [
                 'name' => $field->getName(),
-                'type' => $field->getType()
+                'type' => $field->getType(),
+                'values' => $field->getValues(),
             ];
         }
         $this->presenter->present($presenterData);

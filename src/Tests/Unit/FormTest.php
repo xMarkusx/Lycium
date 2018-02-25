@@ -17,11 +17,12 @@ class FormTest extends TestCase
         $formConfiguration = new DummyConfigurationDataProvider();
         $response = (new ConfigurationDataResponse())
             ->setName('Name')
-            ->setType('Type');
+            ->setType('Type')
+            ->setValues(['Value']);
         $formConfiguration->fields = [$response];
         $form = new Form($formPresenter, $formConfiguration);
         $form->display('form1');
         $this->assertTrue($formPresenter->presentHasBeenCalled);
-        $this->assertEquals([['name' => 'Name', 'type' => 'Type']], $formPresenter->fields);
+        $this->assertEquals([['name' => 'Name', 'type' => 'Type', 'values' => ['Value']]], $formPresenter->fields);
     }
 }
