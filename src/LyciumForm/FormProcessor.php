@@ -2,6 +2,7 @@
 
 namespace Lycium\LyciumForm;
 
+use Lycium\LyciumForm\Finisher\FinisherRequestDatum;
 use Lycium\LyciumForm\Finisher\FormFinisher;
 
 class FormProcessor
@@ -26,6 +27,10 @@ class FormProcessor
      */
     public function processForm(string $formId, array $formData): void
     {
-        $this->finisher->finish($formData);
+        $finisherRequestData = [];
+        foreach ($formData as $key => $datum) {
+            $finisherRequestData[] = new FinisherRequestDatum($key, $datum);
+        }
+        $this->finisher->finish($finisherRequestData);
     }
 }
