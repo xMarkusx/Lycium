@@ -23,11 +23,11 @@ class FormConfiguration
     }
 
     /**
-     * @param int $formId
-     * @return array
+     * @param string $formId
+     * @return FormField[]
      * @throws InvalidFormDataException
      */
-    public function getFields(int $formId): array
+    public function getFields(string $formId): array
     {
         $fields = [];
         $responses = $this->dataProvider->getFieldsOfForm($formId);

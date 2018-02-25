@@ -10,10 +10,10 @@ class DummyConfigurationDataProvider implements ConfigurationDataProvider
     public $fields = [];
 
     /**
-     * @param int $formId
+     * @param string $formId
      * @return ConfigurationDataResponse[]
      */
-    public function getFieldsOfForm(int $formId): array
+    public function getFieldsOfForm(string $formId): array
     {
         return $this->fields;
     }

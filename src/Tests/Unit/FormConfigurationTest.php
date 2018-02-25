@@ -25,7 +25,7 @@ class FormConfigurationTest extends TestCase
 
         $expectedFormField = new FormField('Name', 'Type');
         $expectedFormField->setValues(['Value']);
-        $this->assertEquals([$expectedFormField], $config->getFields(1));
+        $this->assertEquals([$expectedFormField], $config->getFields('Form1'));
     }
 
     /** @test */
@@ -39,6 +39,6 @@ class FormConfigurationTest extends TestCase
         $formConfigurationDataProvider->fields = [$response];
         $config = new FormConfiguration($formConfigurationDataProvider);
         $this->expectException(InvalidFormDataException::class);
-        $config->getFields(1);
+        $config->getFields('Form1');
     }
 }

@@ -12,10 +12,16 @@ class DummyFormPresenter implements FormPresenter
     public $presentHasBeenCalled = false;
 
     /**
+     * @var array
+     */
+    public $fields = [];
+
+    /**
      * @param array $fields
      */
     public function present(array $fields): void
     {
         $this->presentHasBeenCalled = true;
+        $this->fields = $fields;
     }
 }

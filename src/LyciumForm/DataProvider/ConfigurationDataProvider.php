@@ -5,8 +5,8 @@ namespace Lycium\LyciumForm\DataProvider;
 interface ConfigurationDataProvider
 {
     /**
-     * @param int $formId
+     * @param string $formId
      * @return ConfigurationDataResponse[]
      */
-    public function getFieldsOfForm(int $formId): array;
+    public function getFieldsOfForm(string $formId): array;
 }
