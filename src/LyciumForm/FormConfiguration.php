@@ -3,6 +3,8 @@
 namespace Lycium\LyciumForm;
 
 use Lycium\LyciumForm\DataProvider\ConfigurationDataProvider;
+use Lycium\LyciumForm\Exception\InvalidFormDataException;
+use Lycium\LyciumForm\Exception\InvalidFormFieldException;
 
 class FormConfiguration
 {
@@ -23,9 +25,21 @@ class FormConfiguration
     /**
      * @param int $formId
      * @return array
+     * @throws InvalidFormDataException
      */
     public function getFields(int $formId): array
     {
-        return $this->dataProvider->getFieldsOfForm($formId);
+        $fields = [];
+        $responses = $this->dataProvider->getFieldsOfForm($formId);
+        foreach ($responses as $response) {
+            try {
+                $formField = new FormField($response->getName(), $response->getType());
+            } catch (InvalidFormFieldException $exception) {
+                throw new InvalidFormDataException('Error while creating form fields from configuration: ' . $exception->getMessage());
+            }
+            $formField->setValues($response->getValues());
+            $fields[] = $formField;
+        }
+        return $fields;
     }
 }
