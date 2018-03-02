@@ -11,34 +11,47 @@ use PHPUnit\Framework\TestCase;
 
 class FormConfigurationTest extends TestCase
 {
+    /**
+     * @var DummyConfigurationDataProvider
+     */
+    private $formConfigurationDataProvider;
+
+    /**
+     * @var FormConfiguration
+     */
+    private $config;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->formConfigurationDataProvider = new DummyConfigurationDataProvider();
+        $this->config = new FormConfiguration($this->formConfigurationDataProvider);
+    }
+
     /** @test */
     public function it_provides_the_configured_fields()
     {
-        $formConfigurationDataProvider = new DummyConfigurationDataProvider();
         $response = (new ConfigurationDataResponse())
             ->setName('Name')
             ->setType('Type')
             ->setValues(['Value']);
 
-        $formConfigurationDataProvider->fields = [$response];
-        $config = new FormConfiguration($formConfigurationDataProvider);
+        $this->formConfigurationDataProvider->fields = [$response];
 
         $expectedFormField = new FormField('Name', 'Type');
         $expectedFormField->setValues(['Value']);
-        $this->assertEquals([$expectedFormField], $config->getFields('Form1'));
+        $this->assertEquals([$expectedFormField], $this->config->getFields('Form1'));
     }
 
     /** @test */
     public function it_throws_an_invalid_form_configuration_exception_if_one_field_is_not_correct_configured()
     {
-        $formConfigurationDataProvider = new DummyConfigurationDataProvider();
         $response = (new ConfigurationDataResponse())
             ->setName('')
             ->setType('Type');
 
-        $formConfigurationDataProvider->fields = [$response];
-        $config = new FormConfiguration($formConfigurationDataProvider);
+        $this->formConfigurationDataProvider->fields = [$response];
         $this->expectException(InvalidFormDataException::class);
-        $config->getFields('Form1');
+        $this->config->getFields('Form1');
     }
 }
