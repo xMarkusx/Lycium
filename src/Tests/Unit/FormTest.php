@@ -10,19 +10,48 @@ use PHPUnit\Framework\TestCase;
 
 class FormTest extends TestCase
 {
-    /** @test */
-    public function the_configured_form_should_be_displayed()
+    /**
+     * @var DummyFormPresenter
+     */
+    private $formPresenter;
+
+    /**
+     * @var DummyConfigurationDataProvider
+     */
+    private $formConfiguration;
+
+    /**
+     * @var Form
+     */
+    private $form;
+
+    public function setUp()
     {
-        $formPresenter = new DummyFormPresenter();
-        $formConfiguration = new DummyConfigurationDataProvider();
+        parent::setUp();
+        $this->formPresenter = new DummyFormPresenter();
+        $this->formConfiguration = new DummyConfigurationDataProvider();
         $response = (new ConfigurationDataResponse())
             ->setName('Name')
             ->setType('Type')
             ->setValues(['Value']);
-        $formConfiguration->fields = [$response];
-        $form = new Form($formPresenter, $formConfiguration);
-        $form->display('form1');
-        $this->assertTrue($formPresenter->presentHasBeenCalled);
-        $this->assertEquals([['name' => 'Name', 'type' => 'Type', 'values' => ['Value']]], $formPresenter->fields);
+        $this->formConfiguration->fields = [$response];
+        $this->form = new Form($this->formPresenter, $this->formConfiguration);
+    }
+
+    /** @test */
+    public function the_configured_form_can_be_displayed()
+    {
+        $this->form->display('form1');
+        $this->assertTrue($this->formPresenter->presentHasBeenCalled);
+        $this->assertEquals([['name' => 'Name', 'type' => 'Type', 'values' => ['Value']]], $this->formPresenter->fields);
+    }
+
+    /** @test */
+    public function the_configured_form_can_be_repopulated_after_failed_validation()
+    {
+        $this->form->repopulate('form1', ['Name' => ['Submitted Value']], ['Name' => ['error']]);
+        $this->assertTrue($this->formPresenter->presentAfterFailedValidationHasBeenCalled);
+        $this->assertEquals([['name' => 'Name', 'type' => 'Type', 'values' => ['Submitted Value']]], $this->formPresenter->fields);
+        $this->assertEquals(['Name' => ['error']], $this->formPresenter->validationErrors);
     }
 }

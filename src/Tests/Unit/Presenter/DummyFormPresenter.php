@@ -12,9 +12,19 @@ class DummyFormPresenter implements FormPresenter
     public $presentHasBeenCalled = false;
 
     /**
+     * @var bool
+     */
+    public $presentAfterFailedValidationHasBeenCalled = false;
+
+    /**
      * @var array
      */
     public $fields = [];
+
+    /**
+     * @var array
+     */
+    public $validationErrors = [];
 
     /**
      * @param array $fields
@@ -23,5 +33,16 @@ class DummyFormPresenter implements FormPresenter
     {
         $this->presentHasBeenCalled = true;
         $this->fields = $fields;
+    }
+
+    /**
+     * @param array $fields
+     * @param array $validationErrors
+     */
+    public function presentAfterFailedValidation(array $fields, array $validationErrors): void
+    {
+        $this->presentAfterFailedValidationHasBeenCalled = true;
+        $this->fields = $fields;
+        $this->validationErrors = $validationErrors;
     }
 }
