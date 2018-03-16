@@ -22,6 +22,7 @@ class FormProcessor
     /**
      * FormProcessor constructor.
      * @param FormFinisher $finisher
+     * @param Validator $validator
      */
     public function __construct(FormFinisher $finisher, Validator $validator)
     {
@@ -36,7 +37,7 @@ class FormProcessor
      */
     public function processForm(string $formId, array $formData): void
     {
-        if (!$this->validator->validate($formData)) {
+        if (!$this->validator->validate($formData, $formId)) {
             $failedValidationException = new ValidationFailedException('There were validation errors!');
             $failedValidationException->setValidationErrors($this->validator->getValidationErrors());
             throw $failedValidationException;
