@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm\Tests\Unit\Finisher;
 
-use Lycium\LyciumForm\Finisher\FinisherRequestDatum;
+use Lycium\LyciumForm\Finisher\FinisherFieldData;
 use Lycium\LyciumForm\Finisher\FormFinisher;
 
 class DummyFormFinisher implements FormFinisher
@@ -10,7 +10,7 @@ class DummyFormFinisher implements FormFinisher
     public $formData = [];
 
     /**
-     * @param FinisherRequestDatum[] $formData
+     * @param FinisherFieldData[] $formData
      */
     public function finish(array $formData): void
     {

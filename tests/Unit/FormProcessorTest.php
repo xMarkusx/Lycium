@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm\Tests\Unit;
 
-use Lycium\LyciumForm\Finisher\FinisherRequestDatum;
+use Lycium\LyciumForm\Finisher\FinisherFieldData;
 use Lycium\LyciumForm\FormProcessor;
 use Lycium\LyciumForm\Tests\Unit\Finisher\DummyFormFinisher;
 use Lycium\LyciumForm\Tests\Unit\Validation\DummyValidator;
@@ -38,7 +38,7 @@ class FormProcessorTest extends TestCase
     public function it_calls_a_finisher_with_given_data()
     {
         $this->processor->processForm('Form1', ['name' => ['value']]);
-        $expectedRequestDatum = new FinisherRequestDatum('name', ['value']);
+        $expectedRequestDatum = new FinisherFieldData('name', ['value']);
         $this->assertEquals([$expectedRequestDatum], $this->finisher->formData);
     }
 

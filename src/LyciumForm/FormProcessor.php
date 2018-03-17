@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm;
 
-use Lycium\LyciumForm\Finisher\FinisherRequestDatum;
+use Lycium\LyciumForm\Finisher\FinisherFieldData;
 use Lycium\LyciumForm\Finisher\FormFinisher;
 use Lycium\LyciumForm\Validation\Exception\ValidationFailedException;
 use Lycium\LyciumForm\Validation\Validator;
@@ -44,7 +44,7 @@ class FormProcessor
         }
         $finisherRequestData = [];
         foreach ($formData as $key => $datum) {
-            $finisherRequestData[] = new FinisherRequestDatum($key, $datum);
+            $finisherRequestData[] = new FinisherFieldData($key, $datum);
         }
         $this->finisher->finish($finisherRequestData);
     }

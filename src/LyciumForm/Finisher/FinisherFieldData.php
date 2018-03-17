@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm\Finisher;
 
-class FinisherRequestDatum
+class FinisherFieldData
 {
     /**
      * @var string
@@ -15,7 +15,7 @@ class FinisherRequestDatum
     private $value;
 
     /**
-     * FinisherRequestDatum constructor.
+     * FinisherFieldData constructor.
      * @param string $name
      * @param array $value
      */

@@ -5,7 +5,7 @@ namespace Lycium\LyciumForm\Finisher;
 interface FormFinisher
 {
     /**
-     * @param FinisherRequestDatum[] $formData
+     * @param FinisherFieldData[] $formData
      */
     public function finish(array $formData): void;
 }
