@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm\Finisher;
 
-class FinisherFieldData
+final class FinisherFieldData
 {
     /**
      * @var string
