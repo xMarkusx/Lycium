@@ -6,7 +6,7 @@ interface ConfigurationDataProvider
 {
     /**
      * @param string $formId
-     * @return ConfigurationDataResponse[]
+     * @return ConfigurationData[]
      */
     public function getFieldsOfForm(string $formId): array;
 }
