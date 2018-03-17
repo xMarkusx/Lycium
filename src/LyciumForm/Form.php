@@ -4,6 +4,7 @@ namespace Lycium\LyciumForm;
 
 use Lycium\LyciumForm\DataProvider\ConfigurationDataProvider;
 use Lycium\LyciumForm\Presenter\FormPresenter;
+use Lycium\LyciumForm\Presenter\PresenterFieldData;
 
 class Form
 {
@@ -34,7 +35,7 @@ class Form
      */
     public function display(string $formId): void
     {
-        $this->presenter->present($this->buildPresenterFieldData($formId));
+        $this->presenter->present($this->buildConfiguredFieldData($formId));
     }
 
     /**
@@ -45,30 +46,47 @@ class Form
      */
     public function repopulate(string $formId, array $values, array $validationErrors): void
     {
-        $this->presenter->presentAfterFailedValidation($this->buildPresenterFieldData($formId, $values), $validationErrors);
+        $configuredData = $this->buildConfiguredFieldData($formId);
+        $dataToRepopulate = $this->overrideDefaultValuesWithSubmittedValues($configuredData, $values);
+        $this->presenter->presentAfterFailedValidation($dataToRepopulate, $validationErrors);
     }
 
     /**
      * @param string $formId
-     * @param array $values
      * @return array
      * @throws Exception\InvalidFormDataException
      */
-    private function buildPresenterFieldData(string $formId, array $values = []): array
+    private function buildConfiguredFieldData(string $formId): array
     {
         $presenterData = [];
         $fields = $this->formConfiguration->getFields($formId);
         foreach ($fields as $field) {
-            $fieldData = [
-                'name' => $field->getName(),
-                'type' => $field->getType(),
-                'values' => $field->getValues(),
-            ];
-            if (array_key_exists($field->getName(), $values)) {
-                $fieldData['values'] = $values[$field->getName()];
-            }
-            $presenterData[] = $fieldData;
+            $presenterData[] = new PresenterFieldData(
+                $field->getName(),
+                $field->getType(),
+                $field->getValues()
+            );
         }
         return $presenterData;
+    }
+
+    /**
+     * @param FieldData[] $formData
+     * @param array $values
+     * @return array
+     */
+    private function overrideDefaultValuesWithSubmittedValues(array $formData, array $values): array
+    {
+        $overriddenData = $formData;
+        foreach ($formData as $key => $field) {
+            if (array_key_exists($field->getName(), $values)) {
+                $overriddenData[$key] = new PresenterFieldData(
+                    $field->getName(),
+                    $field->getType(),
+                    $values[$field->getName()]
+                );
+            }
+        }
+        return $overriddenData;
     }
 }

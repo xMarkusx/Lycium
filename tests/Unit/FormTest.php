@@ -4,6 +4,7 @@ namespace Lycium\LyciumForm\Tests\Unit;
 
 use Lycium\LyciumForm\DataProvider\FieldConfiguration;
 use Lycium\LyciumForm\Form;
+use Lycium\LyciumForm\Presenter\PresenterFieldData;
 use Lycium\LyciumForm\Tests\Unit\DataProvider\DummyConfigurationDataProvider;
 use Lycium\LyciumForm\Tests\Unit\Presenter\DummyFormPresenter;
 use PHPUnit\Framework\TestCase;
@@ -40,7 +41,8 @@ class FormTest extends TestCase
     {
         $this->form->display('form1');
         $this->assertTrue($this->formPresenter->presentHasBeenCalled);
-        $this->assertEquals([['name' => 'Name', 'type' => 'Type', 'values' => ['Value']]], $this->formPresenter->fields);
+        $expectedPresenterData = new PresenterFieldData('Name', 'Type', ['Value']);
+        $this->assertEquals([$expectedPresenterData], $this->formPresenter->fields);
     }
 
     /** @test */
@@ -48,7 +50,8 @@ class FormTest extends TestCase
     {
         $this->form->repopulate('form1', ['Name' => ['Submitted Value']], ['Name' => ['error']]);
         $this->assertTrue($this->formPresenter->presentAfterFailedValidationHasBeenCalled);
-        $this->assertEquals([['name' => 'Name', 'type' => 'Type', 'values' => ['Submitted Value']]], $this->formPresenter->fields);
+        $expectedPresenterData = new PresenterFieldData('Name', 'Type', ['Submitted Value']);
+        $this->assertEquals([$expectedPresenterData], $this->formPresenter->fields);
         $this->assertEquals(['Name' => ['error']], $this->formPresenter->validationErrors);
     }
 }

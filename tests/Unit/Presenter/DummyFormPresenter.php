@@ -3,6 +3,7 @@
 namespace Lycium\LyciumForm\Tests\Unit\Presenter;
 
 use Lycium\LyciumForm\Presenter\FormPresenter;
+use Lycium\LyciumForm\Presenter\PresenterFieldData;
 
 class DummyFormPresenter implements FormPresenter
 {
@@ -27,7 +28,7 @@ class DummyFormPresenter implements FormPresenter
     public $validationErrors = [];
 
     /**
-     * @param array $fields
+     * @param PresenterFieldData[] $fields
      */
     public function present(array $fields): void
     {
@@ -36,7 +37,7 @@ class DummyFormPresenter implements FormPresenter
     }
 
     /**
-     * @param array $fields
+     * @param PresenterFieldData[] $fields
      * @param array $validationErrors
      */
     public function presentAfterFailedValidation(array $fields, array $validationErrors): void
