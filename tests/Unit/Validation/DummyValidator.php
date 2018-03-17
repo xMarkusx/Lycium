@@ -23,6 +23,16 @@ class DummyValidator implements Validator
     public $validationErrors = [];
 
     /**
+     * @var array
+     */
+    public $fieldsToValidate = [];
+
+    /**
+     * @var string
+     */
+    public $formId = '';
+
+    /**
      * @param FieldData[] $formData
      * @param string $formId
      * @return bool
@@ -30,6 +40,8 @@ class DummyValidator implements Validator
     public function validate(array $formData, string $formId): bool
     {
         $this->validateHasBeenCalled = true;
+        $this->fieldsToValidate = $formData;
+        $this->formId = $formId;
         return !$this->willFail;
     }
 

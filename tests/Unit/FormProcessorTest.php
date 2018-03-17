@@ -50,6 +50,8 @@ class FormProcessorTest extends TestCase
         $fieldData = new FieldData('name', ['value']);
         $this->processor->processForm('Form1', [$fieldData]);
         $this->assertTrue($this->validator->validateHasBeenCalled);
+        $this->assertEquals([$fieldData], $this->validator->fieldsToValidate);
+        $this->assertEquals('Form1', $this->validator->formId);
     }
 
     /** @test */
