@@ -3,7 +3,7 @@
 namespace Lycium\LyciumForm\Tests\Unit\DataProvider;
 
 use Lycium\LyciumForm\DataProvider\ConfigurationDataProvider;
-use Lycium\LyciumForm\DataProvider\ConfigurationData;
+use Lycium\LyciumForm\DataProvider\FieldConfiguration;
 
 class DummyConfigurationDataProvider implements ConfigurationDataProvider
 {
@@ -11,7 +11,7 @@ class DummyConfigurationDataProvider implements ConfigurationDataProvider
 
     /**
      * @param string $formId
-     * @return ConfigurationData[]
+     * @return FieldConfiguration[]
      */
     public function getFieldsOfForm(string $formId): array
     {

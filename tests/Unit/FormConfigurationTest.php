@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm\Tests\Unit;
 
-use Lycium\LyciumForm\DataProvider\ConfigurationData;
+use Lycium\LyciumForm\DataProvider\FieldConfiguration;
 use Lycium\LyciumForm\Exception\InvalidFormDataException;
 use Lycium\LyciumForm\FormConfiguration;
 use Lycium\LyciumForm\FormField;
@@ -31,7 +31,7 @@ class FormConfigurationTest extends TestCase
     /** @test */
     public function it_provides_the_configured_fields()
     {
-        $response = new ConfigurationData('Name', 'Type', ['Value']);
+        $response = new FieldConfiguration('Name', 'Type', ['Value']);
         $this->formConfigurationDataProvider->fields = [$response];
 
         $expectedFormField = new FormField('Name', 'Type');
@@ -42,7 +42,7 @@ class FormConfigurationTest extends TestCase
     /** @test */
     public function it_throws_an_invalid_form_configuration_exception_if_one_field_is_not_correct_configured()
     {
-        $response = new ConfigurationData('', 'Type');
+        $response = new FieldConfiguration('', 'Type');
 
         $this->formConfigurationDataProvider->fields = [$response];
         $this->expectException(InvalidFormDataException::class);

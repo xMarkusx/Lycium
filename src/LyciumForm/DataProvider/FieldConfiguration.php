@@ -2,7 +2,7 @@
 
 namespace Lycium\LyciumForm\DataProvider;
 
-final class ConfigurationData
+final class FieldConfiguration
 {
     /**
      * @var string
@@ -20,7 +20,7 @@ final class ConfigurationData
     private $type;
 
     /**
-     * ConfigurationData constructor.
+     * FieldConfiguration constructor.
      * @param string $name
      * @param string $type
      * @param array $values
