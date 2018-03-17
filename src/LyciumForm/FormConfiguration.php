@@ -35,7 +35,9 @@ class FormConfiguration
             try {
                 $formField = new FormField($response->getName(), $response->getType());
             } catch (InvalidFormFieldException $exception) {
-                throw new InvalidFormDataException('Error while creating form fields from configuration: ' . $exception->getMessage());
+                throw new InvalidFormDataException(
+                    'Error while creating form fields from configuration: ' . $exception->getMessage()
+                );
             }
             $formField->setValues($response->getValues());
             $fields[] = $formField;
