@@ -32,7 +32,7 @@ class FormProcessor
 
     /**
      * @param string $formId
-     * @param array $formData
+     * @param FieldData[] $formData
      * @throws ValidationFailedException
      */
     public function processForm(string $formId, array $formData): void
@@ -43,8 +43,8 @@ class FormProcessor
             throw $failedValidationException;
         }
         $finisherRequestData = [];
-        foreach ($formData as $key => $datum) {
-            $finisherRequestData[] = new FinisherFieldData($key, $datum);
+        foreach ($formData as $fieldData) {
+            $finisherRequestData[] = new FinisherFieldData($fieldData->getName(), $fieldData->getValue());
         }
         $this->finisher->finish($finisherRequestData);
     }

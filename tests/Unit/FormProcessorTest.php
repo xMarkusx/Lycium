@@ -2,6 +2,7 @@
 
 namespace Lycium\LyciumForm\Tests\Unit;
 
+use Lycium\LyciumForm\FieldData;
 use Lycium\LyciumForm\Finisher\FinisherFieldData;
 use Lycium\LyciumForm\FormProcessor;
 use Lycium\LyciumForm\Tests\Unit\Finisher\DummyFormFinisher;
@@ -37,7 +38,8 @@ class FormProcessorTest extends TestCase
     /** @test */
     public function it_calls_a_finisher_with_given_data()
     {
-        $this->processor->processForm('Form1', ['name' => ['value']]);
+        $fieldData = new FieldData('name', ['value']);
+        $this->processor->processForm('Form1', [$fieldData]);
         $expectedRequestDatum = new FinisherFieldData('name', ['value']);
         $this->assertEquals([$expectedRequestDatum], $this->finisher->formData);
     }
@@ -45,7 +47,8 @@ class FormProcessorTest extends TestCase
     /** @test */
     public function it_triggers_the_validation_of_given_data()
     {
-        $this->processor->processForm('Form1', ['name' => ['value']]);
+        $fieldData = new FieldData('name', ['value']);
+        $this->processor->processForm('Form1', [$fieldData]);
         $this->assertTrue($this->validator->validateHasBeenCalled);
     }
 
@@ -54,7 +57,8 @@ class FormProcessorTest extends TestCase
     {
         $this->validator->willFail = true;
         $this->expectException(ValidationFailedException::class);
-        $this->processor->processForm('Form1', ['name' => ['value']]);
+        $fieldData = new FieldData('name', ['value']);
+        $this->processor->processForm('Form1', [$fieldData]);
     }
 
     /** @test */
@@ -63,7 +67,8 @@ class FormProcessorTest extends TestCase
         $this->validator->willFail = true;
         $this->validator->validationErrors = ['fieldName' => ['error1']];
         try {
-            $this->processor->processForm('Form1', ['fieldName' => ['value']]);
+            $fieldData = new FieldData('fieldName', ['value']);
+            $this->processor->processForm('Form1', [$fieldData]);
         } catch (ValidationFailedException $exception) {
             $this->assertEquals(['fieldName' => ['error1']], $exception->getValidationErrors());
         }

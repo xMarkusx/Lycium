@@ -2,10 +2,12 @@
 
 namespace Lycium\LyciumForm\Validation;
 
+use Lycium\LyciumForm\FieldData;
+
 interface Validator
 {
     /**
-     * @param array $formData
+     * @param FieldData[] $formData
      * @param string $formId
      * @return bool
      */

@@ -2,6 +2,7 @@
 
 namespace Lycium\LyciumForm\Tests\Unit\Validation;
 
+use Lycium\LyciumForm\FieldData;
 use Lycium\LyciumForm\Validation\Validator;
 
 class DummyValidator implements Validator
@@ -22,7 +23,7 @@ class DummyValidator implements Validator
     public $validationErrors = [];
 
     /**
-     * @param array $formData
+     * @param FieldData[] $formData
      * @param string $formId
      * @return bool
      */
