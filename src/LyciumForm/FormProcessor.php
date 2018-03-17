@@ -38,9 +38,9 @@ class FormProcessor
     public function processForm(string $formId, array $formData): void
     {
         if (!$this->validator->validate($formData, $formId)) {
-            $failedValidationException = new ValidationFailedException('There were validation errors!');
-            $failedValidationException->setValidationErrors($this->validator->getValidationErrors());
-            throw $failedValidationException;
+            $failedValidation = new ValidationFailedException('There were validation errors!');
+            $failedValidation->setValidationErrors($this->validator->getValidationErrors());
+            throw $failedValidation;
         }
         $finisherRequestData = [];
         foreach ($formData as $fieldData) {
