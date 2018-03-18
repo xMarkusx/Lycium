@@ -6,7 +6,7 @@ use Lycium\LyciumForm\DataProvider\FieldConfiguration;
 use Lycium\LyciumForm\Exception\InvalidFormDataException;
 use Lycium\LyciumForm\FormConfiguration;
 use Lycium\LyciumForm\FormField;
-use Lycium\LyciumForm\Tests\Unit\DataProvider\DummyConfigurationDataProvider;
+use Lycium\LyciumForm\Tests\DummyImplementations\DataProvider\DummyConfigurationDataProvider;
 use PHPUnit\Framework\TestCase;
 
 class FormConfigurationTest extends TestCase

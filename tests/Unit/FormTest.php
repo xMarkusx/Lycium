@@ -5,8 +5,8 @@ namespace Lycium\LyciumForm\Tests\Unit;
 use Lycium\LyciumForm\DataProvider\FieldConfiguration;
 use Lycium\LyciumForm\Form;
 use Lycium\LyciumForm\Presenter\PresenterFieldData;
-use Lycium\LyciumForm\Tests\Unit\DataProvider\DummyConfigurationDataProvider;
-use Lycium\LyciumForm\Tests\Unit\Presenter\DummyFormPresenter;
+use Lycium\LyciumForm\Tests\DummyImplementations\DataProvider\DummyConfigurationDataProvider;
+use Lycium\LyciumForm\Tests\DummyImplementations\Presenter\DummyFormPresenter;
 use PHPUnit\Framework\TestCase;
 
 class FormTest extends TestCase

@@ -5,8 +5,8 @@ namespace Lycium\LyciumForm\Tests\Unit;
 use Lycium\LyciumForm\FieldData;
 use Lycium\LyciumForm\Finisher\FinisherFieldData;
 use Lycium\LyciumForm\FormProcessor;
-use Lycium\LyciumForm\Tests\Unit\Finisher\DummyFormFinisher;
-use Lycium\LyciumForm\Tests\Unit\Validation\DummyValidator;
+use Lycium\LyciumForm\Tests\DummyImplementations\Finisher\DummyFormFinisher;
+use Lycium\LyciumForm\Tests\DummyImplementations\Validation\DummyValidator;
 use Lycium\LyciumForm\Validation\Exception\ValidationFailedException;
 use PHPUnit\Framework\TestCase;
 

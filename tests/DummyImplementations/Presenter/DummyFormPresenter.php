@@ -1,6 +1,6 @@
 <?php
 
-namespace Lycium\LyciumForm\Tests\Unit\Presenter;
+namespace Lycium\LyciumForm\Tests\DummyImplementations\Presenter;
 
 use Lycium\LyciumForm\Presenter\FormPresenter;
 use Lycium\LyciumForm\Presenter\PresenterFieldData;

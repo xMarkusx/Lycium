@@ -1,6 +1,6 @@
 <?php
 
-namespace Lycium\LyciumForm\Tests\Unit\Finisher;
+namespace Lycium\LyciumForm\Tests\DummyImplementations\Finisher;
 
 use Lycium\LyciumForm\Finisher\FinisherFieldData;
 use Lycium\LyciumForm\Finisher\FormFinisher;

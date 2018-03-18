@@ -1,6 +1,6 @@
 <?php
 
-namespace Lycium\LyciumForm\Tests\Unit\DataProvider;
+namespace Lycium\LyciumForm\Tests\DummyImplementations\DataProvider;
 
 use Lycium\LyciumForm\DataProvider\ConfigurationDataProvider;
 use Lycium\LyciumForm\DataProvider\FieldConfiguration;

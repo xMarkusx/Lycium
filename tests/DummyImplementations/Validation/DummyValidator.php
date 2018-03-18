@@ -1,6 +1,6 @@
 <?php
 
-namespace Lycium\LyciumForm\Tests\Unit\Validation;
+namespace Lycium\LyciumForm\Tests\DummyImplementations\Validation;
 
 use Lycium\LyciumForm\FieldData;
 use Lycium\LyciumForm\Validation\Validator;
