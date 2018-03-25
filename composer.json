@@ -1,4 +1,11 @@
 {
+  "name": "lycium/lycium-form",
+  "license": "GPL-3.0+",
+  "description": "Form handling abstraction for simple one step forms",
+  "homepage": "https://github.com/xMarkusx/Lycium",
+  "require": {
+    "php": "^7.1"
+  },
   "require-dev": {
     "phpunit/phpunit": "7.*",
     "codedungeon/phpunit-result-printer": "0.6.*",
